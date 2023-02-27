@@ -5,7 +5,7 @@ type Group struct {
 	ID      string `json:"id"`
 	Created string `json:"created"`
 	Name    string `json:"name"`
-	Perms   int    `json:"perms,omitempty"`
+	Perms   Perm   `json:"perms,omitempty"`
 }
 
 // GroupIDs is a list of group IDs

@@ -24,4 +24,18 @@ const (
 
 	// PermAll is all valid perms
 	PermAll = PermUndefined - 1
+
+	// PermFiles comprises the permission flags that relate to the file system
+	PermFiles = PermRead | PermOverwrite | PermCreate | PermDelete
+
+	// PermReadOnly comprises the permission flags that are "read-only"
+	// operations: operations that don't affect any data or metadata, etc.
+	PermReadOnly = PermRead
 )
+
+// SpecialPerms holds perms for special princs
+type SpecialPerms struct {
+	Everyone      Perm `json:"everyone"`
+	Sessioned     Perm `json:"sessioned"`
+	Authenticated Perm `json:"authenticated"`
+}

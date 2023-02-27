@@ -6,7 +6,7 @@ type User struct {
 	Created string   `json:"created"`
 	Name    string   `json:"name"`
 	Creds   CredIDs  `json:"creds,omitempty"`
-	Perms   int      `json:"perms,omitempty"`
+	Perms   Perm     `json:"perms,omitempty"`
 	Groups  GroupIDs `json:"groups,omitempty"`
 }
 
