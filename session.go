@@ -22,3 +22,21 @@ type SessionRes struct {
 	// Users is a list of the IDs of all users that this session has access to.
 	Users UserIDs `json:"users,omitempty"`
 }
+
+// SessionEfmrlsReq struct {
+type SessionEfmrlsReq struct {
+	StartAfter string `json:"start_after,omitempty"`
+
+	MaxCount int32 `json:"max_count,omitempty"`
+}
+
+// SessionEfmrlsRes struct {
+type SessionEfmrlsRes struct {
+	Message string `json:"message,omitempty"`
+
+	IDs []string `json:"ids"`
+
+	ExclNext string `json:"excl_next,omitempty"`
+
+	Count int32 `json:"count"`
+}
