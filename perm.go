@@ -19,18 +19,28 @@ const (
 	// PermDelete gives permission to delete a file
 	PermDelete
 
-	// PermUndefined means "undefined", and it's used in looping
+	// PermReadMounts gives permission to read the mount table
+	PermReadMounts
+	// PermUpdateMounts gives permission to update existing mounts
+	PermUpdateMounts
+
+	// PermUndefined means "undefined", and it's used in looping. It MUST be
+	// the last of the (1 << iota) assignments.
 	PermUndefined
 
-	// PermAll is all valid perms
-	PermAll = PermUndefined - 1
+	// PermAllDefined is dumb
+	PermAllDefined = PermUndefined - 1
+
+	// PermAll is all perms, including currently invalid ones. This is used for
+	// "future-proofing" for efmrl owners, as more permission bits are defined.
+	PermAll = Perm(0xffffffffffffffff)
 
 	// PermFiles comprises the permission flags that relate to the file system
 	PermFiles = PermRead | PermOverwrite | PermCreate | PermDelete
 
 	// PermReadOnly comprises the permission flags that are "read-only"
 	// operations: operations that don't affect any data or metadata, etc.
-	PermReadOnly = PermRead
+	PermReadOnly = PermRead | PermReadMounts
 )
 
 // SpecialPerms holds perms for special princs
