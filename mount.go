@@ -2,7 +2,6 @@ package api2
 
 // Mount holds an md.Mount for use in the http server
 type Mount struct {
-	Path       string                 `json:"path"`
 	FileSystem string                 `json:"filesystem,omitempty"`
 	Specials   SpecialPerms           `json:"specials,omitempty"`
 	Princs     map[string]*MountPerms `json:"princs,omitempty"`
@@ -21,12 +20,13 @@ type GetMountsRes struct {
 	Message string `json:"message"`
 
 	// Mounts is the list of all mounts on the efmrl
-	Mounts []*Mount `json:"mounts"`
+	Mounts map[string]*Mount `json:"mounts"`
 }
 
 // PostMountReq is a request to create a mount
 type PostMountReq struct {
-	Mount Mount `json:"mount"`
+	Path  string `json:"path"`
+	Mount Mount  `json:"mount"`
 }
 
 // PostMountRes is the result of posting a mount
