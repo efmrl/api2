@@ -33,3 +33,8 @@ type PostMountReq struct {
 type PostMountRes struct {
 	Message string `json:"message"`
 }
+
+// DeleteMountRes is the result of deleting a mount
+type DeleteMountRes struct {
+	Message string `json:"message"`
+}
