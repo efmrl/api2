@@ -4,14 +4,10 @@ package api2
 type Perm uint64
 
 const (
-	// PermNone is no perms
-	PermNone = Perm(0)
-
-	// PermFirst is used in looping
-	PermFirst Perm = Perm(1 << iota)
-
-	// PermRead gives read permission
-	PermRead
+	// PermRead gives read permission. It MUST be defined first in this block
+	// of constants. Not just the (1 << iota) constants, but everything in this
+	// block.
+	PermRead = Perm(1 << iota)
 	// PermOverwrite gives permission to write over an existing file
 	PermOverwrite
 	// PermCreate gives permission to create a new file
@@ -24,6 +20,30 @@ const (
 	// PermUpdateMounts gives permission to update existing mounts
 	PermUpdateMounts
 
+	// PermCreateUser grants the ability to create a new user
+	PermCreateUser
+
+	// PermReadUsers grants the ability to read all users on the efmrl. Every
+	// user can read their own metadata.
+	PermReadUsers
+
+	// PermWriteUsers grants the ability to create, update, or delete any users.
+	// Every user can update their own metadata (other than permissions).
+	PermWriteUsers
+
+	// PermReadGroups grants the ability to read all groups
+	PermReadGroups
+
+	// PermEditGroups grants the ability to create, edit, or delete groups; and
+	// to add or remove users to groups
+	PermWriteGroups
+
+	// PermEditPerms grants the ability to edit the permissions on users and
+	// groups. Without this permission, permissions cannot be edited. Note that
+	// the efmrl's owner always has this permission, even if the permission bits
+	// don't reflect it.
+	PermEditPerms
+
 	// PermUndefined means "undefined", and it's used in looping. It MUST be
 	// the last of the (1 << iota) assignments.
 	PermUndefined
@@ -33,7 +53,13 @@ const (
 
 	// PermAll is all perms, including currently invalid ones. This is used for
 	// "future-proofing" for efmrl owners, as more permission bits are defined.
-	PermAll = Perm(0xffffffffffffffff)
+	PermAll = ^Perm(0)
+
+	// PermNone is the case where no permissions are given
+	PermNone = Perm(0)
+
+	// PermFirst is used in looping
+	PermFirst = Perm(1)
 
 	// PermFiles comprises the permission flags that relate to the file system
 	PermFiles = PermRead | PermOverwrite | PermCreate | PermDelete
