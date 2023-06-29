@@ -23,7 +23,8 @@ const (
 	GroupVisible = (1 << iota)
 
 	// GroupUsersVisible indicates that members of this group will be able to
-	// see all users within the group
+	// see all users within the group. Not all user metadata will be visible,
+	// e.g. not the creds.
 	GroupUsersVisible
 
 	// GroupJoinable indicates that any user may join this group without being
