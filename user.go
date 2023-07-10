@@ -2,12 +2,14 @@ package api2
 
 // PostUserReq is used to request a user to be created
 type PostUserReq struct {
-	User *User `json:"user"`
+	User  *User  `json:"user"`
+	Email *Email `json:"email,omitempty"`
 }
 
 // PostUserRes is returned after a user is posted
 type PostUserRes struct {
 	Message string `json:"message"`
+	User    *User  `json:"user,omitempty"`
 }
 
 // GetUsersRes is returned for a GET on users
