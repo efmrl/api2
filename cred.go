@@ -27,8 +27,8 @@ type Email struct {
 	Type string `json:"type"`
 	// Address is the email address
 	Address string `json:"address"`
-	// Name is the name of this cred, e.g. "work" for a work email address
-	Name string `json:"name,omitempty"`
+	// Desc is the description of this cred, e.g. "work" for a work email address
+	Desc string `json:"name,omitempty"`
 }
 
 // CredIDs is a bunch of cred IDs
