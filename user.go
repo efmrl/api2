@@ -8,13 +8,25 @@ type PostUserReq struct {
 
 // PostUserRes is returned after a user is posted
 type PostUserRes struct {
-	Message string `json:"message"`
+	Message string `json:"message,omitempty"`
 	User    *User  `json:"user,omitempty"`
+}
+
+// PatchUserReq is used to patch a user's metadata
+type PatchUserReq struct {
+	User *User `json:"user"`
+}
+
+// PatchUserRes is returned after a user is patched
+type PatchUserRes struct {
+	Message string `json:"message,omitempty"`
+	User    *User  `json:"user"`
 }
 
 // GetUsersRes is returned for a GET on users
 type GetUsersRes struct {
-	Users []*User `json:"users"`
+	Message string  `json:"message,omitempty"`
+	Users   []*User `json:"users"`
 }
 
 // User defines a user within an efmrl
