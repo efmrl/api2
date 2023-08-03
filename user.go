@@ -23,6 +23,12 @@ type PatchUserRes struct {
 	User    *User  `json:"user"`
 }
 
+// GetUserRes is returned for a GET on a particular user
+type GetUserRes struct {
+	Message string `json:"message,omitempty"`
+	User    *User  `json:"user"`
+}
+
 // GetUsersRes is returned for a GET on users
 type GetUsersRes struct {
 	Message string  `json:"message,omitempty"`
@@ -34,8 +40,8 @@ type User struct {
 	ID      string   `json:"id"`
 	Created string   `json:"created"`
 	Name    string   `json:"name"`
-	Creds   CredIDs  `json:"creds,omitempty"`
 	Perms   Perm     `json:"perms,omitempty"`
+	Creds   CredIDs  `json:"creds,omitempty"`
 	Groups  GroupIDs `json:"groups,omitempty"`
 }
 
