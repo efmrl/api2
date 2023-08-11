@@ -14,6 +14,8 @@ const (
 	PermCreate
 	// PermDelete gives permission to delete a file
 	PermDelete
+	// PermListFiles gives permission to get a listing of file information
+	PermListFiles
 
 	// PermReadMounts gives permission to read the mount table
 	PermReadMounts
@@ -62,7 +64,8 @@ const (
 	PermFirst = Perm(1)
 
 	// PermFiles comprises the permission flags that relate to the file system
-	PermFiles = PermRead | PermOverwrite | PermCreate | PermDelete
+	PermFiles = PermRead | PermOverwrite | PermCreate | PermDelete |
+		PermListFiles
 
 	// PermReadOnly comprises the permission flags that are "read-only"
 	// operations: operations that don't affect any data or metadata, etc.
