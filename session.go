@@ -18,9 +18,13 @@ type SessionRes struct {
 	// Created is when the session was created, in RFC 3339 format.
 	Created string `json:"created,omitempty"`
 	// Creds is a list of the IDs of all credentials that this session holds.
-	Creds CredIDs `json:"creds,omitempty"`
+	Creds map[string]*SessionLogin `json:"creds,omitempty"`
 	// Users is a list of the IDs of all users that this session has access to.
-	Users UserIDs `json:"users,omitempty"`
+	Users map[string]*UserLogin `json:"users,omitempty"`
+}
+
+type SessionDeleteRes struct {
+	Message string `json:"message,omitempty"`
 }
 
 // SessionEfmrlsReq struct {
@@ -39,4 +43,16 @@ type SessionEfmrlsRes struct {
 	ExclNext string `json:"excl_next,omitempty"`
 
 	Count int32 `json:"count"`
+}
+
+// SessionLogin describes a successful login of a cred
+type SessionLogin struct {
+	When     string `json:"when"`
+	Friendly string `json:"friendly"`
+}
+
+// UserLogin describes a successful login of a user
+type UserLogin struct {
+	When     string `json:"when"`
+	Friendly string `json:"friendly"`
 }

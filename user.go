@@ -44,6 +44,3 @@ type User struct {
 	Creds   CredIDs  `json:"creds,omitempty"`
 	Groups  GroupIDs `json:"groups,omitempty"`
 }
-
-// UserIDs is a bunch of user IDs
-type UserIDs []string
