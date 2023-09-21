@@ -12,13 +12,13 @@ type PostUserRes struct {
 	User    *User  `json:"user,omitempty"`
 }
 
-// PatchUserReq is used to patch a user's metadata
-type PatchUserReq struct {
+// PutUserReq is used to put a user's metadata
+type PutUserReq struct {
 	User *User `json:"user"`
 }
 
-// PatchUserRes is returned after a user is patched
-type PatchUserRes struct {
+// PutUserRes is returned after a user is put
+type PutUserRes struct {
 	Message string `json:"message,omitempty"`
 	User    *User  `json:"user"`
 }

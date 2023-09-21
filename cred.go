@@ -5,12 +5,18 @@ const (
 	CredTypeMulti = "multi"
 	// CredTypeEmail designates a cred as an Email (see below)
 	CredTypeEmail = "email"
+	// CredTypeTOTP designates a cred as a TOTP (see below)
+	CredTypeTOTP = "totp"
+	// CredTypeGithub designates a cred as a login-via-github (see below)
+	CredTypeGithub = "github"
 )
 
 type GetCredsRes struct {
-	Message string   `json:"message,omitempty"`
-	Multis  []*Multi `json:"multis,omitempty"`
-	Emails  []*Email `json:"emails,omitempty"`
+	Message string    `json:"message,omitempty"`
+	Multis  []*Multi  `json:"multis,omitempty"`
+	Emails  []*Email  `json:"emails,omitempty"`
+	TOTPs   []*TOTP   `json:"totps,omitempty"`
+	Githubs []*Github `json:"githubs,omitempty"`
 }
 
 type PostMultiReq struct {
@@ -32,7 +38,7 @@ type PostEmailRes struct {
 }
 
 type PostTOTPReq struct {
-	TOTP TOTP `json:"totp"`
+	TOTP *TOTP `json:"totp"`
 }
 
 type PostTOTPRes struct {
@@ -72,6 +78,14 @@ type TOTP struct {
 	Digits int `json:"digits,omitempty"`
 	// Parent is the id of the parent of this cred
 	Parent string `json:"parent,omitempty"`
+}
+
+// Github is a login-via-github cred.
+type Github struct {
+	ID          string `json:"id"`
+	GithubID    int64  `json:"githubID"`
+	GithubLogin string `json:"githubLogin"`
+	Parent      string `json:"parent,omitempty"`
 }
 
 // CredIDs is a bunch of cred IDs
