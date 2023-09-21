@@ -17,6 +17,7 @@ type GetCredsRes struct {
 	Emails  []*Email  `json:"emails,omitempty"`
 	TOTPs   []*TOTP   `json:"totps,omitempty"`
 	Githubs []*Github `json:"githubs,omitempty"`
+	UserID  string    `json:"user_id,omitempty"`
 }
 
 type PostMultiReq struct {
