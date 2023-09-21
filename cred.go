@@ -53,8 +53,6 @@ type Multi struct {
 	// be considered to have this cred. A value of 0 means that all child creds
 	// must be in your session to qualify.
 	Needed int `json:"needed"`
-	// Parent is the id of the parent of this cred, if any
-	Parent string `json:"parent,omitempty"`
 }
 
 // Email is a type of cred that represents an email address.
@@ -64,8 +62,6 @@ type Email struct {
 	Address string `json:"address"`
 	// Desc is the description of this cred, e.g. "work" for a work email address
 	Desc string `json:"name,omitempty"`
-	// Parent is the id of the parent of this cred, if any
-	Parent string `json:"parent,omitempty"`
 }
 
 // TOTP is a Timed One-Time-Password cred.
@@ -76,8 +72,6 @@ type TOTP struct {
 	// number of digits the TOTP will have. Must be 6, 8, or 0 for the default
 	// value (6).
 	Digits int `json:"digits,omitempty"`
-	// Parent is the id of the parent of this cred
-	Parent string `json:"parent,omitempty"`
 }
 
 // Github is a login-via-github cred.
@@ -85,7 +79,6 @@ type Github struct {
 	ID          string `json:"id"`
 	GithubID    int64  `json:"githubID"`
 	GithubLogin string `json:"githubLogin"`
-	Parent      string `json:"parent,omitempty"`
 }
 
 // CredIDs is a bunch of cred IDs
