@@ -17,6 +17,17 @@ type PutUserReq struct {
 	User *User `json:"user"`
 }
 
+// PutNewUserReq is used to put a user's metadata
+type PutNewUserReq struct {
+	User *NewUser `json:"user"`
+}
+
+// PutNewUserRes is returned after a user is put
+type PutNewUserRes struct {
+	Message string   `json:"message,omitempty"`
+	User    *NewUser `json:"user"`
+}
+
 // PutUserRes is returned after a user is put
 type PutUserRes struct {
 	Message string `json:"message,omitempty"`
@@ -27,6 +38,11 @@ type PutUserRes struct {
 type GetUserRes struct {
 	Message string `json:"message,omitempty"`
 	User    *User  `json:"user"`
+}
+
+type GetNewUserRes struct {
+	Message string   `json:"message,omitempty"`
+	User    *NewUser `json:"user"`
 }
 
 // GetUsersRes is returned for a GET on users
@@ -42,5 +58,14 @@ type User struct {
 	Name    string   `json:"name"`
 	Perms   Perm     `json:"perms,omitempty"`
 	Creds   CredIDs  `json:"creds,omitempty"`
+	Groups  GroupIDs `json:"groups,omitempty"`
+}
+
+// User defines a user within an efmrl
+type NewUser struct {
+	ID      string   `json:"id"`
+	Created string   `json:"created"`
+	Name    string   `json:"name"`
+	Perms   Perm     `json:"perms,omitempty"`
 	Groups  GroupIDs `json:"groups,omitempty"`
 }
