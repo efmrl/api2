@@ -14,7 +14,18 @@ type Response struct {
 	Message string `json:"message,omitempty"`
 }
 
-func NewSuccess(payload any) *Response {
+type APIer interface {
+	API() any
+}
+
+func NewSuccess(payload APIer) *Response {
+	return &Response{
+		Status: StatusSuccess,
+		Data:   payload.API(),
+	}
+}
+
+func NewSuccessAny(payload any) *Response {
 	return &Response{
 		Status: StatusSuccess,
 		Data:   payload,
