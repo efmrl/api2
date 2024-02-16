@@ -46,6 +46,13 @@ const (
 	// don't reflect it.
 	PermEditPerms
 
+	// PermReadNames grants the ability to read the names given to the efmrl.
+	PermReadNames
+
+	// PermWriteNames grants the ability to modify the list of names for the
+	// efmrl.
+	PermWriteNames
+
 	// PermUndefined means "undefined", and it's used in looping. It MUST be
 	// the last of the (1 << iota) assignments.
 	PermUndefined

@@ -16,9 +16,6 @@ type MountPerms struct {
 
 // GetMountsRes is the result of getting an efmrl's mounts
 type GetMountsRes struct {
-	// Message can hold success or error messages
-	Message string `json:"message"`
-
 	// Mounts is the list of all mounts on the efmrl
 	Mounts map[string]*Mount `json:"mounts"`
 }

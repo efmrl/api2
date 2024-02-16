@@ -56,6 +56,15 @@ type PostTOTPRes struct {
 	TOTP    *TOTP  `json:"totp,omitempty"`
 }
 
+type PutTOTPReq struct {
+	TOTP *TOTP `json:"totp"`
+}
+
+type PutTOTPRes struct {
+	Message string `json:"message,omitempty"`
+	TOTP    *TOTP  `json:"totp,omitempty"`
+}
+
 type DeleteCredRes struct {
 	Message string `json:"message,omitempty"`
 }
@@ -69,6 +78,8 @@ type Multi struct {
 	Needed int `json:"needed"`
 	// UserID is the id of the user that owns this cred
 	UserID string `json:"user_id"`
+	// InSession is true if this cred is in the current session
+	InSession bool `json:"in_session"`
 }
 
 // Email is a type of cred that represents an email address.
@@ -80,6 +91,8 @@ type Email struct {
 	Desc string `json:"name,omitempty"`
 	// UserID is the id of the user that owns this cred
 	UserID string `json:"user_id"`
+	// InSession is true if this cred is in the current session
+	InSession bool `json:"in_session"`
 }
 
 // TOTP is a Timed One-Time-Password cred.
@@ -92,6 +105,8 @@ type TOTP struct {
 	Digits int `json:"digits,omitempty"`
 	// UserID is the id of the user that owns this cred
 	UserID string `json:"user_id"`
+	// InSession is true if this cred is in the current session
+	InSession bool `json:"in_session"`
 }
 
 // Github is a login-via-github cred.
@@ -103,6 +118,8 @@ type Github struct {
 	GithubLogin string `json:"githubLogin"`
 	// UserID is the id of the user that owns this cred
 	UserID string `json:"user_id"`
+	// InSession is true if this cred is in the current session
+	InSession bool `json:"in_session"`
 }
 
 // CredIDs is a bunch of cred IDs

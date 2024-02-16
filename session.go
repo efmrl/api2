@@ -25,7 +25,7 @@ type NewSessionReq struct {
 
 // NewSessionRes is returned from session requests
 type NewSessionRes struct {
-	// Message holds an error or a success message
+	// XXX need this?
 	Message string `json:"message,omitempty"`
 
 	// ID is the ID of the session
