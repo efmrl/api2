@@ -1,6 +1,7 @@
 package api2
 
 // api2 wants to follow JSend: https://github.com/omniti-labs/jsend
+// found from https://stackoverflow.com/questions/12806386/is-there-any-standard-for-json-api-response-format
 
 const (
 	StatusSuccess = "success"
