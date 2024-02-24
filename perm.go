@@ -1,5 +1,11 @@
 package api2
 
+import (
+	"slices"
+
+	"golang.org/x/exp/maps"
+)
+
 // Perm represents permissions
 type Perm uint64
 
@@ -33,18 +39,18 @@ const (
 	// Every user can update their own metadata (other than permissions).
 	PermWriteUsers
 
+	// PermEditPerms grants the ability to edit the permissions on users and
+	// groups. Without this permission, permissions cannot be edited. Note that
+	// the efmrl's owner always has this permission, even if the permission bits
+	// don't reflect it.
+	PermEditPerms
+
 	// PermReadGroups grants the ability to read all groups
 	PermReadGroups
 
 	// PermEditGroups grants the ability to create, edit, or delete groups; and
 	// to add or remove users to groups
 	PermWriteGroups
-
-	// PermEditPerms grants the ability to edit the permissions on users and
-	// groups. Without this permission, permissions cannot be edited. Note that
-	// the efmrl's owner always has this permission, even if the permission bits
-	// don't reflect it.
-	PermEditPerms
 
 	// PermReadNames grants the ability to read the names given to the efmrl.
 	PermReadNames
@@ -84,4 +90,55 @@ type SpecialPerms struct {
 	Everyone      Perm `json:"everyone"`
 	Sessioned     Perm `json:"sessioned"`
 	Authenticated Perm `json:"authenticated"`
+}
+
+func PermNameValue() map[string]Perm {
+	return map[string]Perm{
+		"PermRead":         PermRead,
+		"PermOverwrite":    PermOverwrite,
+		"PermCreate":       PermCreate,
+		"PermDelete":       PermDelete,
+		"PermListFiles":    PermListFiles,
+		"PermReadMounts":   PermReadMounts,
+		"PermUpdateMounts": PermUpdateMounts,
+		"PermCreateUser":   PermCreateUser,
+		"PermReadUsers":    PermReadUsers,
+		"PermWriteUsers":   PermWriteUsers,
+		"PermEditPerms":    PermEditPerms,
+		"PermReadGroups":   PermReadGroups,
+		"PermWriteGroups":  PermWriteGroups,
+		"PermReadNames":    PermReadNames,
+		"PermWriteNames":   PermWriteNames,
+		"PermUndefined":    PermUndefined,
+		"PermAllDefined":   PermAllDefined,
+		"PermAll":          PermAll,
+		"PermNone":         PermNone,
+		"PermFirst":        PermFirst,
+		"PermFiles":        PermFiles,
+		"PermReadOnly":     PermReadOnly,
+	}
+}
+
+func PermSimplePerms() []string {
+	pnv := PermNameValue()
+
+	keys := slices.DeleteFunc(maps.Keys(PermNameValue()), func(k string) bool {
+		v := pnv[k]
+		if v >= PermUndefined {
+			return true
+		}
+
+		switch k {
+		case "PermNone", "PermFirst", "PermAllDefined", "PermFiles", "PermReadOnly":
+			return true
+		}
+
+		return false
+	})
+
+	slices.SortFunc(keys, func(a, b string) int {
+		return int(pnv[a] - pnv[b])
+	})
+
+	return keys
 }
