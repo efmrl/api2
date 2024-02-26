@@ -19,11 +19,25 @@ type APIer interface {
 	API() any
 }
 
+// NewResult gives you a target for JSON decoding. Pass in the structure to be
+// filled in on success.
+func NewResult(success any) *Response {
+	return &Response{
+		Data: success,
+	}
+}
+
 func NewSuccess(payload APIer) *Response {
 	return &Response{
 		Status: StatusSuccess,
 		Data:   payload.API(),
 	}
+}
+
+func NewSuccessMessage(payload APIer, message string) *Response {
+	res := NewSuccess(payload)
+	res.Message = message
+	return res
 }
 
 func NewSuccessAny(payload any) *Response {
@@ -40,9 +54,9 @@ func NewFailure(message string) *Response {
 	}
 }
 
-func NewError(message string) *Response {
+func NewError(err error) *Response {
 	return &Response{
 		Status:  StatusError,
-		Message: message,
+		Message: err.Error(),
 	}
 }
