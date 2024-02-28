@@ -3,7 +3,7 @@ package api2
 type ListFilesReq struct {
 	Path         string `json:"path,omitempty"`
 	JustNames    bool   `json:"just_names,omitempty"`
-	Recursive    bool   `json:"recursive,omitempty"`
+	Flat         bool   `json:"flat,omitempty"`
 	CrossFS      bool   `json:"cross_fs,omitempty"`
 	Continuation string `json:"continuation,omitempty"`
 	MaxFiles     int    `json:"max_files,omitempty"`
