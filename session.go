@@ -46,6 +46,9 @@ type NewSessionRes struct {
 	// Confirmed is when a user was confirmed, in RFC 3339 format. Will be empty
 	// if no user has been confirmed.
 	Confirmed string `json:"confirmed,omitempty"`
+
+	// Perms is the current set of permissions in this session
+	Perms Perm `json:"perms,omitempty"`
 }
 
 // SessionReq is sent to the REST API '/session' endpoint.
