@@ -92,37 +92,35 @@ type SpecialPerms struct {
 	Authenticated Perm `json:"authenticated"`
 }
 
-func PermNameValue() map[string]Perm {
-	return map[string]Perm{
-		"PermRead":         PermRead,
-		"PermOverwrite":    PermOverwrite,
-		"PermCreate":       PermCreate,
-		"PermDelete":       PermDelete,
-		"PermListFiles":    PermListFiles,
-		"PermReadMounts":   PermReadMounts,
-		"PermUpdateMounts": PermUpdateMounts,
-		"PermCreateUser":   PermCreateUser,
-		"PermReadUsers":    PermReadUsers,
-		"PermWriteUsers":   PermWriteUsers,
-		"PermEditPerms":    PermEditPerms,
-		"PermReadGroups":   PermReadGroups,
-		"PermWriteGroups":  PermWriteGroups,
-		"PermReadNames":    PermReadNames,
-		"PermWriteNames":   PermWriteNames,
-		"PermUndefined":    PermUndefined,
-		"PermAllDefined":   PermAllDefined,
-		"PermAll":          PermAll,
-		"PermNone":         PermNone,
-		"PermFirst":        PermFirst,
-		"PermFiles":        PermFiles,
-		"PermReadOnly":     PermReadOnly,
-	}
+var PermNameValue = map[string]Perm{
+	"PermRead":         PermRead,
+	"PermOverwrite":    PermOverwrite,
+	"PermCreate":       PermCreate,
+	"PermDelete":       PermDelete,
+	"PermListFiles":    PermListFiles,
+	"PermReadMounts":   PermReadMounts,
+	"PermUpdateMounts": PermUpdateMounts,
+	"PermCreateUser":   PermCreateUser,
+	"PermReadUsers":    PermReadUsers,
+	"PermWriteUsers":   PermWriteUsers,
+	"PermEditPerms":    PermEditPerms,
+	"PermReadGroups":   PermReadGroups,
+	"PermWriteGroups":  PermWriteGroups,
+	"PermReadNames":    PermReadNames,
+	"PermWriteNames":   PermWriteNames,
+	"PermUndefined":    PermUndefined,
+	"PermAllDefined":   PermAllDefined,
+	"PermAll":          PermAll,
+	"PermNone":         PermNone,
+	"PermFirst":        PermFirst,
+	"PermFiles":        PermFiles,
+	"PermReadOnly":     PermReadOnly,
 }
 
 func PermSimplePerms() []string {
-	pnv := PermNameValue()
+	pnv := PermNameValue
 
-	keys := slices.DeleteFunc(maps.Keys(PermNameValue()), func(k string) bool {
+	keys := slices.DeleteFunc(maps.Keys(PermNameValue), func(k string) bool {
 		v := pnv[k]
 		if v >= PermUndefined {
 			return true
