@@ -85,6 +85,26 @@ const (
 	PermReadOnly = PermRead | PermReadMounts
 )
 
+type PermReference struct {
+	StringToBits map[string]Perm `json:"stringToBits"`
+	BitsToString map[Perm]string `json:"bitsToString"`
+}
+
+// API usually converts an internal-only data structure to a type defined in
+// this API. In this case, it simply populates a PermReference, so that a
+// caller could use api2.NewSuccess(pr).
+func (pr *PermReference) API() any {
+	pr.StringToBits = make(map[string]Perm, len(PermNameValue))
+	pr.BitsToString = make(map[Perm]string, len(PermNameValue))
+
+	for k, v := range PermNameValue {
+		pr.StringToBits[k] = v
+		pr.BitsToString[v] = k
+	}
+
+	return pr
+}
+
 var PermNameValue = map[string]Perm{
 	"PermRead":         PermRead,
 	"PermOverwrite":    PermOverwrite,
