@@ -85,13 +85,6 @@ const (
 	PermReadOnly = PermRead | PermReadMounts
 )
 
-// SpecialPerms holds perms for special princs
-type SpecialPerms struct {
-	Everyone      Perm `json:"everyone"`
-	Sessioned     Perm `json:"sessioned"`
-	Authenticated Perm `json:"authenticated"`
-}
-
 var PermNameValue = map[string]Perm{
 	"PermRead":         PermRead,
 	"PermOverwrite":    PermOverwrite,
@@ -117,11 +110,12 @@ var PermNameValue = map[string]Perm{
 	"PermReadOnly":     PermReadOnly,
 }
 
+// PermSimplePerms returns a list of the "simple perms", which are appropriate
+// for showing in a UI. It takes out complex ones, e.g. PermFiles, and other
+// artifacts that aren't normally used, e.g. PermUndefined.
 func PermSimplePerms() []string {
-	pnv := PermNameValue
-
 	keys := slices.DeleteFunc(maps.Keys(PermNameValue), func(k string) bool {
-		v := pnv[k]
+		v := PermNameValue[k]
 		if v >= PermUndefined {
 			return true
 		}
@@ -135,8 +129,15 @@ func PermSimplePerms() []string {
 	})
 
 	slices.SortFunc(keys, func(a, b string) int {
-		return int(pnv[a] - pnv[b])
+		return int(PermNameValue[a] - PermNameValue[b])
 	})
 
 	return keys
+}
+
+// SpecialPerms holds perms for special princs
+type SpecialPerms struct {
+	Everyone      Perm `json:"everyone"`
+	Sessioned     Perm `json:"sessioned"`
+	Authenticated Perm `json:"authenticated"`
 }
