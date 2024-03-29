@@ -2,6 +2,7 @@ package api2
 
 import (
 	"slices"
+	"strings"
 
 	"golang.org/x/exp/maps"
 )
@@ -153,6 +154,20 @@ func PermSimplePerms() []string {
 	})
 
 	return keys
+}
+
+// SimpleNames returns a slice of strings that break down a given perm
+func (perm Perm) SimpleNames() []string {
+	res := []string{}
+
+	for _, name := range PermSimplePerms() {
+		if val := PermNameValue[name]; (val & perm) == val {
+			name = strings.TrimPrefix(name, "Perm")
+			res = append(res, name)
+		}
+	}
+
+	return res
 }
 
 // SpecialPerms holds perms for special princs
