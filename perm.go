@@ -1,6 +1,7 @@
 package api2
 
 import (
+	"fmt"
 	"slices"
 	"strings"
 
@@ -81,9 +82,13 @@ const (
 	PermFiles = PermRead | PermOverwrite | PermCreate | PermDelete |
 		PermListFiles
 
+	// PermWrite is the ability to write a file, regardless of whether it
+	// currently exists.
+	PermWrite = PermOverwrite | PermCreate
+
 	// PermReadOnly comprises the permission flags that are "read-only"
 	// operations: operations that don't affect any data or metadata, etc.
-	PermReadOnly = PermRead | PermReadMounts
+	PermReadOnly = PermRead | PermReadMounts | PermReadNames
 )
 
 type PermReference struct {
@@ -128,7 +133,43 @@ var PermNameValue = map[string]Perm{
 	"PermNone":         PermNone,
 	"PermFirst":        PermFirst,
 	"PermFiles":        PermFiles,
+	"PermWrite":        PermWrite,
 	"PermReadOnly":     PermReadOnly,
+}
+
+var PermLowerNameValue map[string]Perm
+
+func init() {
+	PermLowerNameValue = make(map[string]Perm, len(PermNameValue))
+
+	for k, v := range PermNameValue {
+		k = strings.ToLower(k)
+		PermLowerNameValue[k] = v
+	}
+}
+
+var PermShortDefinitions = map[Perm]string{
+	PermRead:         "read a file",
+	PermOverwrite:    "overwrite an existing file",
+	PermCreate:       "create a new file",
+	PermDelete:       "delete a file",
+	PermListFiles:    "list files",
+	PermReadMounts:   "list mounts",
+	PermUpdateMounts: "update mounts",
+	PermCreateUser:   "create a new user",
+	PermReadUsers:    "read all users",
+	PermWriteUsers:   "update users",
+	PermEditPerms:    "edit permissions",
+	PermReadGroups:   "read all groups",
+	PermWriteGroups:  "update groups",
+	PermReadNames:    "read all efmrl names",
+	PermWriteNames:   "update efmrl names",
+	PermUndefined:    "undefined permissions",
+	PermAllDefined:   "defined permissions",
+	PermAll:          "all permissions",
+	PermNone:         "no permissions",
+	PermFiles:        "file-oriented permissions",
+	PermReadOnly:     "read-only permissions",
 }
 
 // PermSimplePerms returns a list of the "simple perms", which are appropriate
@@ -142,7 +183,8 @@ func PermSimplePerms() []string {
 		}
 
 		switch k {
-		case "PermNone", "PermFirst", "PermAllDefined", "PermFiles", "PermReadOnly":
+		case "PermNone", "PermFirst", "PermAllDefined", "PermFiles",
+			"PermWrite", "PermReadOnly":
 			return true
 		}
 
@@ -168,6 +210,31 @@ func (perm Perm) SimpleNames() []string {
 	}
 
 	return res
+}
+
+func SimpleNamesToPerm(names []string) (Perm, error) {
+	var res Perm
+
+	for _, name := range names {
+		key := cleanup(name)
+		perm, found := PermLowerNameValue[key]
+		if !found {
+			return 0, fmt.Errorf("no such permission %q", name)
+		}
+		res |= perm
+	}
+
+	return res, nil
+}
+
+func cleanup(in string) string {
+	out := strings.TrimSpace(in)
+	out = strings.ToLower(out)
+	if len(out) < 4 || out[:4] != "perm" {
+		out = "perm" + out
+	}
+
+	return out
 }
 
 // SpecialPerms holds perms for special princs
