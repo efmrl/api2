@@ -95,6 +95,21 @@ const (
 	PermReadOnly = PermRead | PermReadMounts | PermReadNames
 )
 
+type AllPerms struct {
+	Efmrl  *SpecialPerms            `json:"efmrl,omitempty"`
+	Mounts map[string]*SpecialPerms `json:"mounts,omitempty"`
+	Owner  Perm                     `json:"owner"`
+	Users  map[string]Perm          `json:"users,omitempty"`
+	Groups map[string]Perm          `json:"groups,omitempty"`
+}
+
+// SpecialPerms holds perms for special princs
+type SpecialPerms struct {
+	Everyone      Perm `json:"everyone"`
+	Sessioned     Perm `json:"sessioned"`
+	Authenticated Perm `json:"authenticated"`
+}
+
 type PermReference struct {
 	StringToBits map[string]Perm `json:"stringToBits"`
 	BitsToString map[Perm]string `json:"bitsToString"`
@@ -241,11 +256,4 @@ func cleanup(in string) string {
 	}
 
 	return out
-}
-
-// SpecialPerms holds perms for special princs
-type SpecialPerms struct {
-	Everyone      Perm `json:"everyone"`
-	Sessioned     Perm `json:"sessioned"`
-	Authenticated Perm `json:"authenticated"`
 }
