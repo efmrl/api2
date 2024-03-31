@@ -41,11 +41,15 @@ const (
 	// Every user can update their own metadata (other than permissions).
 	PermWriteUsers
 
-	// PermEditPerms grants the ability to edit the permissions on users and
+	// PermReadPerms grants the ability to read permissions on the efmrl,
+	// mounts, and all princs which are visible.
+	PermReadPerms
+
+	// PermWritePerms grants the ability to edit the permissions on users and
 	// groups. Without this permission, permissions cannot be edited. Note that
 	// the efmrl's owner always has this permission, even if the permission bits
 	// don't reflect it.
-	PermEditPerms
+	PermWritePerms
 
 	// PermReadGroups grants the ability to read all groups
 	PermReadGroups
@@ -122,7 +126,8 @@ var PermNameValue = map[string]Perm{
 	"PermCreateUser":   PermCreateUser,
 	"PermReadUsers":    PermReadUsers,
 	"PermWriteUsers":   PermWriteUsers,
-	"PermEditPerms":    PermEditPerms,
+	"PermReadPerms":    PermReadPerms,
+	"PermWritePerms":   PermWritePerms,
 	"PermReadGroups":   PermReadGroups,
 	"PermWriteGroups":  PermWriteGroups,
 	"PermReadNames":    PermReadNames,
@@ -159,7 +164,8 @@ var PermShortDefinitions = map[Perm]string{
 	PermCreateUser:   "create a new user",
 	PermReadUsers:    "read all users",
 	PermWriteUsers:   "update users",
-	PermEditPerms:    "edit permissions",
+	PermReadPerms:    "read permissions",
+	PermWritePerms:   "write permissions",
 	PermReadGroups:   "read all groups",
 	PermWriteGroups:  "update groups",
 	PermReadNames:    "read all efmrl names",
