@@ -96,11 +96,11 @@ const (
 )
 
 type AllPerms struct {
-	Efmrl  *SpecialPerms            `json:"efmrl,omitempty"`
-	Mounts map[string]*SpecialPerms `json:"mounts,omitempty"`
-	Owner  Perm                     `json:"owner"`
-	Users  map[string]Perm          `json:"users,omitempty"`
-	Groups map[string]Perm          `json:"groups,omitempty"`
+	Efmrl  *SpecialPerms       `json:"efmrl,omitempty"`
+	Mounts map[string]*Mount   `json:"mounts,omitempty"`
+	Owner  *NewUser            `json:"owner,omitempty"`
+	Users  map[string]*NewUser `json:"users,omitempty"`
+	Groups map[string]*Group   `json:"groups,omitempty"`
 }
 
 // SpecialPerms holds perms for special princs

@@ -3,7 +3,7 @@ package api2
 // Mount holds an md.Mount for use in the http server
 type Mount struct {
 	FileSystem string                 `json:"filesystem,omitempty"`
-	Specials   SpecialPerms           `json:"specials,omitempty"`
+	Specials   *SpecialPerms          `json:"specials,omitempty"`
 	Princs     map[string]*MountPerms `json:"princs,omitempty"`
 }
 
