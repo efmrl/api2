@@ -105,9 +105,9 @@ type AllPerms struct {
 
 // SpecialPerms holds perms for special princs
 type SpecialPerms struct {
-	Everyone      Perm `json:"everyone"`
-	Sessioned     Perm `json:"sessioned"`
-	Authenticated Perm `json:"authenticated"`
+	Everyone      *Perm `json:"everyone"`
+	Sessioned     *Perm `json:"sessioned"`
+	Authenticated *Perm `json:"authenticated"`
 }
 
 type PermReference struct {
