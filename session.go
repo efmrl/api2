@@ -10,8 +10,8 @@ type WANFinishLoginRes struct {
 	Message string `json:"message"`
 }
 
-// NewSessionReq is sent to the REST API '/newsession' endpoint
-type NewSessionReq struct {
+// SessionReq is sent to the REST API '/session' endpoint
+type SessionReq struct {
 	// CookieOK indicates that the user is okay with cookies
 	CookieOK bool `json:"cookie_ok"`
 
@@ -23,8 +23,8 @@ type NewSessionReq struct {
 	UserSecret string `json:"user_secret,omitempty"`
 }
 
-// NewSessionRes is returned from session requests
-type NewSessionRes struct {
+// SessionRes is returned from session requests
+type SessionRes struct {
 	// ID is the ID of the session
 	ID string `json:"id,omitempty"`
 
@@ -36,7 +36,7 @@ type NewSessionRes struct {
 	UserKey string `json:"user_key,omitempty"`
 
 	// UserID returns a user ID for the user that was specified in the
-	// UserKey field of NewSessionReq.
+	// UserKey field of SessionReq.
 	UserID string `json:"user,omitempty"`
 
 	// Declared is when a user was declared, in RFC 3339 format. Will be empty
