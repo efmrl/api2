@@ -2,57 +2,41 @@ package api2
 
 // PostUserReq is used to request a user to be created
 type PostUserReq struct {
-	User  *NewUser `json:"user"`
-	Email *Email   `json:"email,omitempty"`
+	User  *User  `json:"user"`
+	Email *Email `json:"email,omitempty"`
 }
 
 // PostUserRes is returned after a user is posted
 type PostUserRes struct {
-	Message string   `json:"message,omitempty"`
-	User    *NewUser `json:"user,omitempty"`
+	Message string `json:"message,omitempty"`
+	User    *User  `json:"user,omitempty"`
 }
 
 // PutUserReq is used to put a user's metadata
 type PutUserReq struct {
-	User *NewUser `json:"user"`
-}
-
-// PutNewUserReq is used to put a user's metadata
-type PutNewUserReq struct {
-	User *NewUser `json:"user"`
-}
-
-// PutNewUserRes is returned after a user is put
-type PutNewUserRes struct {
-	Message string   `json:"message,omitempty"`
-	User    *NewUser `json:"user"`
+	User *User `json:"user"`
 }
 
 // PutUserRes is returned after a user is put
 type PutUserRes struct {
-	Message string   `json:"message,omitempty"`
-	User    *NewUser `json:"user"`
+	Message string `json:"message,omitempty"`
+	User    *User  `json:"user"`
 }
 
 // GetUserRes is returned for a GET on a particular user
 type GetUserRes struct {
-	Message string   `json:"message,omitempty"`
-	User    *NewUser `json:"user"`
-}
-
-type GetNewUserRes struct {
-	Message string   `json:"message,omitempty"`
-	User    *NewUser `json:"user"`
+	Message string `json:"message,omitempty"`
+	User    *User  `json:"user"`
 }
 
 // GetUsersRes is returned for a GET on users
 type GetUsersRes struct {
-	Message string     `json:"message,omitempty"`
-	Users   []*NewUser `json:"users"`
+	Message string  `json:"message,omitempty"`
+	Users   []*User `json:"users"`
 }
 
 // User defines a user within an efmrl
-type NewUser struct {
+type User struct {
 	ID      string   `json:"id"`
 	Created string   `json:"created"`
 	Name    string   `json:"name"`
