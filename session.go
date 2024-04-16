@@ -36,7 +36,7 @@ type NewSessionRes struct {
 	UserKey string `json:"user_key,omitempty"`
 
 	// UserID returns a user ID for the user that was specified in the
-	// KserKey field of NewSessionReq.
+	// UserKey field of NewSessionReq.
 	UserID string `json:"user,omitempty"`
 
 	// Declared is when a user was declared, in RFC 3339 format. Will be empty
