@@ -27,12 +27,8 @@ type Email struct {
 	ID string `json:"id"`
 	// Address is the email address
 	Address string `json:"address"`
-	// Desc is the description of this cred, e.g. "work" for a work email address
-	Desc string `json:"name,omitempty"`
-	// UserID is the id of the user that owns this cred
-	UserID string `json:"user_id"`
-	// InSession is true if this cred is in the current session
-	InSession bool `json:"in_session"`
+	// Validated is true if the email has been validated by its user
+	Validated bool `json:"validated"`
 }
 
 // CredIDs is a bunch of cred IDs
