@@ -1,5 +1,13 @@
 package api2
 
+type PostGroupReq struct {
+	Name string `json:"name"`
+}
+
+type GetGroupsRes struct {
+	Groups []*Group `json:"groups"`
+}
+
 // Group defines a group within an efmrl
 type Group struct {
 	ID      string `json:"id"`
