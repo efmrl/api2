@@ -38,6 +38,18 @@ const (
 	// GroupJoinable indicates that any user may join this group without being
 	// permitted otherwise
 	GroupJoinable
+
+	// GroupFlagsClear indicates that the set of flags given should be patched
+	// to be the new value for the group's flags. This is necessary to
+	// differentiate whether the flags aren't being modified or if they are
+	// being set to all-zero. If present, it must be the only flags set.
+	GroupFlagsClear
+
+	// GroupFlagsBeyond is the first undefined flag
+	GroupFlagsBeyond
+
+	// GroupFlagsDefined is the set of valid flags
+	GroupFlagsDefined = GroupFlagsBeyond - 1
 )
 
 // GroupIDs is a list of group IDs
