@@ -69,7 +69,7 @@ const (
 	// the last of the (1 << iota) assignments.
 	PermUndefined
 
-	// PermAllDefined is dumb
+	// PermAllDefined is all currently defined permission bits
 	PermAllDefined = PermUndefined - 1
 
 	// PermAll is all perms, including currently invalid ones. This is used for
