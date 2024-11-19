@@ -112,6 +112,7 @@ type SpecialPerms struct {
 type PermReference struct {
 	StringToBits map[string]Perm `json:"stringToBits"`
 	BitsToString map[Perm]string `json:"bitsToString"`
+	SimplePerms  []string        `json:"simplePerms"`
 }
 
 // API usually converts an internal-only data structure to a type defined in
@@ -125,6 +126,8 @@ func (pr *PermReference) API() any {
 		pr.StringToBits[k] = v
 		pr.BitsToString[v] = k
 	}
+
+	pr.SimplePerms = PermSimplePerms()
 
 	return pr
 }
