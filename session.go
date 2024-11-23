@@ -90,5 +90,5 @@ type GetTokenRes struct {
 	// Token is the login token
 	Token string `json:"token"`
 	// Expires is when the token expires, in RFC 3339 format.
-	Expires string `json:"created,omitempty"`
+	Expires string `json:"expires,omitempty"`
 }
