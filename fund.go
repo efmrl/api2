@@ -10,6 +10,10 @@ type PostFundRes struct {
 	CheckoutURL string `json:"jsonURL"`
 }
 
+type ListFundsRes struct {
+	Funds []*Fund `json:"funds"`
+}
+
 type Fund struct {
 	ID      string `json:"id"`
 	Created string `json:"created"`
