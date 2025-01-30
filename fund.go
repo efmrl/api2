@@ -1,13 +1,14 @@
 package api2
 
 type PostFundReq struct {
-	Type int    `json:"type"`
-	Name string `json:"name,omitempty"`
+	Type   int    `json:"type"`
+	Amount int    `json:"amount"`
+	Name   string `json:"name,omitempty"`
 }
 
 type PostFundRes struct {
 	ID          string `json:"id"`
-	CheckoutURL string `json:"jsonURL"`
+	CheckoutURL string `json:"checkoutURL"`
 }
 
 type ListFundsRes struct {
@@ -19,6 +20,7 @@ type Fund struct {
 	Created string `json:"created"`
 	Name    string `json:"name,omitempty"`
 	Type    int    `json:"type"`
+	Status  string `json:"status"`
 }
 
 var FundTypes []string = []string{
