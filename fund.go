@@ -18,9 +18,16 @@ type ListFundsRes struct {
 type Fund struct {
 	ID      string `json:"id"`
 	Created string `json:"created"`
-	Name    string `json:"name,omitempty"`
+	Name    string `json:"name"`
 	Type    int    `json:"type"`
-	Status  string `json:"status"`
+
+	Status string       `json:"status"`
+	Audits []*FundAudit `json:"audits,omitempty"`
+}
+
+type FundAudit struct {
+	When    string `json:"when"`
+	Message string `json:"message"`
 }
 
 var FundTypes []string = []string{
