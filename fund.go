@@ -21,7 +21,14 @@ type Fund struct {
 	Name    string `json:"name"`
 	Type    int    `json:"type"`
 
-	Status string       `json:"status"`
+	Status    string `json:"status"`
+	Valid     string `json:"valid,omitempty"`
+	Suspended string `json:"suspended,omitempty"`
+	Expires   string `json:"expires,omitempty"`
+
+	Usable  bool `json:"usable"`
+	Expired bool `json:"expired"`
+
 	Audits []*FundAudit `json:"audits,omitempty"`
 }
 
