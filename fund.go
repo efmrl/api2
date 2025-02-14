@@ -1,9 +1,11 @@
 package api2
 
 type PostFundReq struct {
-	Type   int    `json:"type"`
-	Amount int    `json:"amount"`
-	Name   string `json:"name,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Expires      string `json:"expires,omitempty"`
+	Subscription bool   `json:"subscription"`
+	Throttled    bool   `json:"throttled"`
+	Which        string `json:"which"`
 }
 
 type PostFundRes struct {
@@ -19,12 +21,17 @@ type Fund struct {
 	ID      string `json:"id"`
 	Created string `json:"created"`
 	Name    string `json:"name"`
-	Type    int    `json:"type"`
 
-	Status    string `json:"status"`
-	Valid     string `json:"valid,omitempty"`
-	Suspended string `json:"suspended,omitempty"`
-	Expires   string `json:"expires,omitempty"`
+	Status       string `json:"status"`
+	Valid        string `json:"valid,omitempty"`
+	Suspended    string `json:"suspended,omitempty"`
+	Expires      string `json:"expires,omitempty"`
+	Subscription bool   `json:"subscription"`
+	Period       string `json:"period"`
+	Throttled    bool   `json:"throttled"`
+
+	BurstOnly    bool `json:"burstOnly"`
+	PercentAvail int  `json:"percentAvail"`
 
 	Usable  bool `json:"usable"`
 	Expired bool `json:"expired"`
