@@ -8,6 +8,22 @@ type GetGroupsRes struct {
 	Groups []*Group `json:"groups"`
 }
 
+type PostUserAction int
+
+const (
+	PostUserAdd PostUserAction = iota
+	PostUserDrop
+)
+
+type PostUserToGroupReq struct {
+	UserID string         `json:"userID"`
+	Action PostUserAction `json:"action"`
+}
+
+type GetGroupUsersRes struct {
+	Users []*User `json:"users"`
+}
+
 // Group defines a group within an efmrl
 type Group struct {
 	ID      string `json:"id"`
@@ -19,7 +35,7 @@ type Group struct {
 	Managers string `json:"managers,omitempty"`
 
 	// Perms is a set of permissions that are added to members of this group
-	Perms Perm `json:"perms,omitempty"`
+	Perms Perm `json:"perms"`
 
 	// Flags is a set of group-only booleans; see Group* constants below
 	Flags uint64 `json:"flags,omitempty"`
