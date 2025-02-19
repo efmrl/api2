@@ -17,6 +17,10 @@ type ListFundsRes struct {
 	Funds []*Fund `json:"funds"`
 }
 
+type GetPortalRes struct {
+	URL string `json:"url"`
+}
+
 type Fund struct {
 	ID      string `json:"id"`
 	Created string `json:"created"`
