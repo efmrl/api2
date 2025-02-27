@@ -2,7 +2,6 @@ package api2
 
 // PostUserReq is used to request a user to be created
 type PostUserReq struct {
-	User  *User  `json:"user"`
 	Email *Email `json:"email,omitempty"`
 	Name  string `json:"name,omitempty"`
 }
@@ -19,4 +18,5 @@ type User struct {
 	Name    string   `json:"name"`
 	Perms   Perm     `json:"perms"`
 	Emails  []*Email `json:"emails,omitempty"`
+	Groups  []*Group `json:"groups,omitempty"`
 }
