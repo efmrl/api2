@@ -47,6 +47,9 @@ type SessionRes struct {
 	// if no user has been confirmed.
 	Confirmed string `json:"confirmed,omitempty"`
 
+	// UserName is the user.name field
+	UserName string `json:"userName,omitempty"`
+
 	// Perms is the current set of permissions in this session
 	Perms Perm `json:"perms,omitempty"`
 }
