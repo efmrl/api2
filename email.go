@@ -28,7 +28,7 @@ type Email struct {
 	// Address is the email address
 	Address string `json:"address"`
 	// Validated is true if the email has been validated by its user
-	Validated bool `json:"validated"`
+	Validated string `json:"validated,omitempty"`
 }
 
 // CredIDs is a bunch of cred IDs
