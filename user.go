@@ -13,10 +13,11 @@ type ListUsersRes struct {
 
 // User defines a user within an efmrl
 type User struct {
-	ID      string   `json:"id"`
-	Created string   `json:"created"`
-	Name    string   `json:"name"`
-	Perms   Perm     `json:"perms"`
-	Emails  []*Email `json:"emails,omitempty"`
-	Groups  []*Group `json:"groups,omitempty"`
+	ID       string     `json:"id"`
+	Created  string     `json:"created"`
+	Name     string     `json:"name"`
+	Perms    Perm       `json:"perms"`
+	Emails   []*Email   `json:"emails,omitempty"`
+	Passkeys []*Passkey `json:"passkeys,omitempty"`
+	Groups   []*Group   `json:"groups,omitempty"`
 }
