@@ -21,6 +21,11 @@ type GetPortalRes struct {
 	URL string `json:"url"`
 }
 
+type PostFundReorderReq struct {
+	FundID string `json:"fundID"`
+	Index  int    `json:"index"`
+}
+
 type Fund struct {
 	ID      string `json:"id"`
 	Created string `json:"created"`
