@@ -12,6 +12,10 @@ type GetNamesRes struct {
 	Names []*EfmrlName `json:"names"`
 }
 
+type GetWildcardDomainRes struct {
+	Domain string `json:"domain"`
+}
+
 type EfmrlName struct {
 	Name      string `json:"name"`
 	Link      string `json:"link,omitempty"`
