@@ -10,7 +10,6 @@ type ListFilesReq struct {
 }
 
 type ListFilesRes struct {
-	Message      string               `json:"message,omitempty"`
 	Files        map[string]*FileInfo `json:"files,omitempty"`
 	Names        []string             `json:"names,omitempty"`
 	Continuation string               `json:"continuation,omitempty"`
