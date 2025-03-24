@@ -68,5 +68,29 @@ const (
 	GroupFlagsDefined = GroupFlagsBeyond - 1
 )
 
+var GroupFlagValue = map[string]uint64{
+	"GroupVisible":      GroupVisible,
+	"GroupUsersVisible": GroupUsersVisible,
+	"GroupJoinable":     GroupJoinable,
+	"GroupFlagsClear":   GroupFlagsClear,
+}
+
+type GroupReference struct {
+	StringToBits map[string]uint64 `json:"stringToBits"`
+	BitsToString map[uint64]string `json:"bitsToString"`
+}
+
+func (gr *GroupReference) API() any {
+	gr.StringToBits = make(map[string]uint64, len(GroupFlagValue))
+	gr.BitsToString = make(map[uint64]string, len(GroupFlagValue))
+
+	for k, v := range GroupFlagValue {
+		gr.StringToBits[k] = v
+		gr.BitsToString[v] = k
+	}
+
+	return gr
+}
+
 // GroupIDs is a list of group IDs
 type GroupIDs []string
