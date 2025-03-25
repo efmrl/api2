@@ -35,7 +35,7 @@ type Group struct {
 	Managers string `json:"managers,omitempty"`
 
 	// Perms is a set of permissions that are added to members of this group
-	Perms Perm `json:"perms"`
+	Perms Perm `json:"perms,omitempty"`
 
 	// Flags is a set of group-only booleans; see Group* constants below
 	Flags uint64 `json:"flags,omitempty"`

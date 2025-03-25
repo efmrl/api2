@@ -11,7 +11,7 @@ type Mount struct {
 
 // MountPerms holds permissions for a princ with respect to a mount
 type MountPerms struct {
-	Perms     Perm  `json:"perms"`
+	Perms     Perm  `json:"perms,omitempty"`
 	FileQuota int32 `json:"fileQuota"`
 	ByteQuota int32 `json:"byteQuota"`
 }

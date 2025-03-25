@@ -16,7 +16,7 @@ type User struct {
 	ID       string     `json:"id"`
 	Created  string     `json:"created"`
 	Name     string     `json:"name"`
-	Perms    Perm       `json:"perms"`
+	Perms    Perm       `json:"perms,omitempty"`
 	Emails   []*Email   `json:"emails,omitempty"`
 	Passkeys []*Passkey `json:"passkeys,omitempty"`
 	Groups   []*Group   `json:"groups,omitempty"`
