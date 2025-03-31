@@ -5,7 +5,6 @@ type PostFundReq struct {
 	Expires      string `json:"expires,omitempty"`
 	Subscription bool   `json:"subscription"`
 	Throttled    bool   `json:"throttled"`
-	Which        string `json:"which"`
 }
 
 type PostFundRes struct {
