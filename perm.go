@@ -65,6 +65,16 @@ const (
 	// efmrl.
 	PermWriteNames
 
+	// PermCreateFunds grants the ability to create a fund; i.e., give money to
+	// support an efmrl
+	PermCreateFunds
+	// PermReadFunds grants the ability to see all existing funds on an efmrl
+	PermReadFunds
+	// PermModifyFunds grants the ability to modify existing funds. At present,
+	// this means the ability to cancel or uncancel a subscription via the
+	// stripe portal.
+	PermModifyFunds
+
 	// PermUndefined means "undefined", and it's used in looping. It MUST be
 	// the last of the (1 << iota) assignments.
 	PermUndefined
@@ -149,6 +159,9 @@ var PermNameValue = map[string]Perm{
 	"PermWriteGroups":  PermWriteGroups,
 	"PermReadNames":    PermReadNames,
 	"PermWriteNames":   PermWriteNames,
+	"PermCreateFunds":  PermCreateFunds,
+	"PermReadFunds":    PermReadFunds,
+	"PermModifyFunds":  PermModifyFunds,
 	"PermUndefined":    PermUndefined,
 	"PermAllDefined":   PermAllDefined,
 	"PermAll":          PermAll,
@@ -187,6 +200,9 @@ var PermShortDefinitions = map[Perm]string{
 	PermWriteGroups:  "update groups",
 	PermReadNames:    "read all efmrl names",
 	PermWriteNames:   "update efmrl names",
+	PermCreateFunds:  "create funds",
+	PermReadFunds:    "read funds",
+	PermModifyFunds:  "modify funds",
 	PermUndefined:    "undefined permissions",
 	PermAllDefined:   "defined permissions",
 	PermAll:          "all permissions",
