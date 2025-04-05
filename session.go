@@ -1,15 +1,5 @@
 package api2
 
-type WANFinishRegisterRes struct {
-	// Message can hold success or error messages
-	Message string `json:"message"`
-}
-
-type WANFinishLoginRes struct {
-	// Message can hold success or error messages
-	Message string `json:"message"`
-}
-
 // SessionReq is sent to the REST API '/session' endpoint
 type SessionReq struct {
 	// CookieOK indicates that the user is okay with cookies
@@ -54,8 +44,9 @@ type SessionRes struct {
 	Perms Perm `json:"perms,omitempty"`
 }
 
-type SessionDeleteRes struct {
-	Message string `json:"message,omitempty"`
+type SessionsRes struct {
+	// Sessions is the list of active sessions.
+	Sessions []*SessionRes `json:"sessions"`
 }
 
 // SessionEfmrlsReq struct {
@@ -74,18 +65,6 @@ type SessionEfmrlsRes struct {
 	ExclNext string `json:"excl_next,omitempty"`
 
 	Count int32 `json:"count"`
-}
-
-// SessionLogin describes a successful login of a cred
-type SessionLogin struct {
-	When     string `json:"when"`
-	Friendly string `json:"friendly"`
-}
-
-// UserLogin describes a successful login of a user
-type UserLogin struct {
-	When     string `json:"when"`
-	Friendly string `json:"friendly"`
 }
 
 // GetTokenRes returns a login token
