@@ -28,9 +28,14 @@ func NewResult(success any) *Response {
 }
 
 func NewSuccess(payload APIer) *Response {
+	var data any
+	if payload != nil {
+		data = payload.API()
+	}
+
 	return &Response{
 		Status: StatusSuccess,
-		Data:   payload.API(),
+		Data:   data,
 	}
 }
 
