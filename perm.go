@@ -75,6 +75,11 @@ const (
 	// stripe portal.
 	PermModifyFunds
 
+	// PermCreateEfmrl grants the ability to spawn an efmrl from the efmrl
+	// being called. For example, if using efmrl.com to try to spawn an efmrl,
+	// then this permission must be granted on efmrl.com.
+	PermCreateEfmrl
+
 	// PermUndefined means "undefined", and it's used in looping. It MUST be
 	// the last of the (1 << iota) assignments.
 	PermUndefined
@@ -162,6 +167,7 @@ var PermNameValue = map[string]Perm{
 	"PermCreateFunds":  PermCreateFunds,
 	"PermReadFunds":    PermReadFunds,
 	"PermModifyFunds":  PermModifyFunds,
+	"PermCreateEfmrl":  PermCreateEfmrl,
 	"PermUndefined":    PermUndefined,
 	"PermAllDefined":   PermAllDefined,
 	"PermAll":          PermAll,
@@ -203,6 +209,7 @@ var PermShortDefinitions = map[Perm]string{
 	PermCreateFunds:  "create funds",
 	PermReadFunds:    "read funds",
 	PermModifyFunds:  "modify funds",
+	PermCreateEfmrl:  "create a new efmrl",
 	PermUndefined:    "undefined permissions",
 	PermAllDefined:   "defined permissions",
 	PermAll:          "all permissions",
