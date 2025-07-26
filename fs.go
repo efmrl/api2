@@ -21,3 +21,20 @@ type FileInfo struct {
 	FS    string `json:"fs,omitempty"`
 	Bytes int    `json:"bytes,omitempty"`
 }
+
+type ListFileSystemsRes struct {
+	FileSystems []*FileSystem          `json:"fileSystems"`
+	FSMap       map[string]*FileSystem `json:"fsMap,omitempty"`
+}
+
+type FileSystem struct {
+	ID          string   `json:"id"`
+	Parent      string   `json:"parent,omitempty"`
+	Ancestors   []string `json:"ancestors,omitempty"`
+	Children    []string `json:"children,omitempty"`
+	Created     string   `json:"created"`
+	LastMounted string   `json:"lastMounted"`
+	IsMounted   bool     `json:"isMounted"`
+	Frozen      string   `json:"frozen,omitempty"`
+	Bytes       int      `json:"bytes"`
+}
