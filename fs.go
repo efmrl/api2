@@ -27,6 +27,14 @@ type ListFileSystemsRes struct {
 	FSMap       map[string]*FileSystem `json:"fsMap,omitempty"`
 }
 
+type UpdateFilesystemReq struct {
+	Freeze bool `json:"freeze"`
+}
+
+type UpdateFilesystemRes struct {
+	Filesystem *FileSystem `json:"filesystem"`
+}
+
 type FileSystem struct {
 	ID          string   `json:"id"`
 	Parent      string   `json:"parent,omitempty"`
