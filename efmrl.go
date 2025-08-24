@@ -5,6 +5,11 @@ type Efmrl struct {
 	Created string `json:"created"`
 }
 
+type GetEfmrlMDRes struct {
+	CanonicalURL string `json:"canonicalURL"`
+	APIPrefix    string `json:"apiPrefix"`
+}
+
 type GetCreationSessionReq struct {
 	Email string `json:"email"`
 }
