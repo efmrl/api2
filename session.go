@@ -37,6 +37,11 @@ type SessionRes struct {
 	// if no user has been confirmed.
 	Confirmed string `json:"confirmed,omitempty"`
 
+	// Active is when the session has last been used. It is imperfect, but
+	// it roughly corresponds to when the session came into play when testing
+	// for permission or identity.
+	Active string `json:"active,omitempty"`
+
 	// UserName is the user.name field
 	UserName string `json:"userName,omitempty"`
 
