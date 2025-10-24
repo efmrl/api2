@@ -10,6 +10,10 @@ type GetEfmrlMDRes struct {
 	APIPrefix    string `json:"apiPrefix"`
 }
 
+type EfmrlSpecialPaths struct {
+	Wildcard string `json:"wildcard"`
+}
+
 type GetCreationSessionReq struct {
 	Email string `json:"email"`
 }
