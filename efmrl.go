@@ -26,6 +26,23 @@ type ReserveNameRes struct {
 	Expires string `json:"expires"`
 }
 
+type FindEfmrlsReq struct {
+	EmailAddr string `json:"emailAddr,omitempty"`
+
+	MaxCount   int32  `json:"maxCount,omitempty"`
+	StartAfter string `json:"startAfter,omitempty"`
+}
+
+type FindEfmrlsRes struct {
+	Efmrls []*struct {
+		ID  string `json:"id"`
+		URL string `json:"url"`
+	} `json:"efmrls"`
+
+	ExclNext string `json:"exclNext,omitempty"`
+	Count    int32  `json:"count"`
+}
+
 type PostEfmrlReq struct {
 	OwnerName string       `json:"ownerName,omitempty"`
 	Name      string       `json:"name,omitempty"`
