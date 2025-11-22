@@ -33,11 +33,13 @@ type FindEfmrlsReq struct {
 	StartAfter string `json:"startAfter,omitempty"`
 }
 
+type FindEfmrlRes struct {
+	ID  string `json:"id"`
+	URL string `json:"url"`
+}
+
 type FindEfmrlsRes struct {
-	Efmrls []*struct {
-		ID  string `json:"id"`
-		URL string `json:"url"`
-	} `json:"efmrls"`
+	Efmrls []*FindEfmrlRes
 
 	ExclNext string `json:"exclNext,omitempty"`
 	Count    int32  `json:"count"`
