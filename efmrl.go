@@ -28,6 +28,7 @@ type ReserveNameRes struct {
 
 type FindEfmrlsReq struct {
 	EmailAddr string `json:"emailAddr,omitempty"`
+	Product   string `json:"product,omitempty"`
 
 	MaxCount   int32  `json:"maxCount,omitempty"`
 	StartAfter string `json:"startAfter,omitempty"`
